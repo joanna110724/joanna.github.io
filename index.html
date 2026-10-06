@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Rivera | Computational Neuroscience</title>
+  <meta name="description" content="Academic portfolio and research in computational neuroscience, neural coding, and biophysical modeling.">
+
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              50: '#f0f4f9',
+              100: '#dde6f3',
+              200: '#c1d3e9',
+              300: '#97badc',
+              400: '#679bcc',
+              500: '#457ebc',
+              600: '#3264a2',
+              700: '#285084',
+              800: '#1d3557',
+              900: '#0f1d32',
+              950: '#08101e',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Clean subtle transitions */
+    * {
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .canvas-mask {
+      mask-image: radial-gradient(circle at 50% 50%, black 50%, transparent 95%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 50%, transparent 95%);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-[#070e1e] dark:text-slate-200 antialiased font-sans min-h-screen selection:bg-blue-200 dark:selection:bg-blue-900">
+
+  <!-- Minimal Header / Nav -->
+  <header class="border-b border-slate-200/80 dark:border-navy-900/90 bg-slate-50/85 dark:bg-[#070e1e]/85 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-3xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="#" class="font-semibold tracking-tight text-navy-950 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+        Alex Rivera
+      </a>
+
+      <nav class="flex items-center space-x-6 text-sm font-medium">
+        <a href="#about" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+        <a href="#research" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Research</a>
+        <a href="#publications" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Papers</a>
+        <a href="#projects" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
+        <button id="themeToggle" class="text-slate-500 hover:text-navy-900 dark:hover:text-slate-200 p-1 rounded transition-colors" title="Toggle Theme">
+          <i class="fa-regular fa-moon dark:hidden"></i>
+          <i class="fa-regular fa-sun hidden dark:inline"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-3xl mx-auto px-5 py-8 space-y-16 relative">
+
+    <!-- Dynamic Neural Network Header Hero Canvas -->
+    <div class="relative w-full overflow-hidden rounded-2xl border border-navy-100 dark:border-navy-900/60 bg-gradient-to-b from-navy-50/70 via-white/50 to-slate-50/30 dark:from-[#0b172e] dark:via-[#091326] dark:to-[#070e1e] p-6 sm:p-8 shadow-sm">
+      <!-- Interactive Neural Canvas -->
+      <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-auto canvas-mask opacity-80 dark:opacity-75"></canvas>
+
+      <!-- Profile & Hero Content Overlay -->
+      <section id="about" class="relative z-10 space-y-6">
+        <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-blue-100/80 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+              Neural Dynamics & Learning
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-navy-950 dark:text-slate-50 font-serif">
+              Alex Rivera
+            </h1>
+            <p class="text-slate-700 dark:text-slate-300 font-medium text-sm">
+              Incoming Ph.D. Student in Computational Neuroscience
+            </p>
+            <p class="text-slate-500 dark:text-slate-400 text-xs">
+              University Department of Brain & Cognitive Sciences
+            </p>
+          </div>
+
+          <!-- Academic Avatar with Navy Accent -->
+          <div class="relative group flex-shrink-0">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-navy-800 via-navy-700 to-blue-600 flex items-center justify-center text-white font-serif text-2xl font-semibold shadow-md ring-4 ring-white dark:ring-[#0b172e]">
+              AR
+            </div>
+            <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-blue-500 border-2 border-white dark:border-[#070e1e] flex items-center justify-center text-[9px] text-white" title="Active Spiking">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio statement -->
+        <div class="text-slate-700 dark:text-slate-300 font-serif text-lg leading-relaxed space-y-3 pt-1">
+          <p>
+            I study how neural circuits compute, store information, and learn through time. My research interests lie at the intersection of <strong class="text-navy-900 dark:text-blue-200">dynamical systems</strong>, <strong class="text-navy-900 dark:text-blue-200">spiking neural networks (SNNs)</strong>, and <strong class="text-navy-900 dark:text-blue-200">synaptic plasticity</strong>.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 font-sans leading-normal">
+            Prior to starting my Ph.D., I completed my B.S. in Applied Mathematics and Biophysics, where I modeled attractor stability in balanced excitation-inhibition networks.
+          </p>
+        </div>
+
+        <!-- Quick Action Badges & Links -->
+        <div class="flex flex-wrap gap-2.5 pt-2 text-xs font-mono">
+          <a href="mailto:arivera@university.edu" class="px-3 py-1.5 rounded-md bg-white/90 dark:bg-navy-900/90 border border-slate-200 dark:border-navy-800 hover:border-blue-400 dark:hover:border-blue-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-regular fa-envelope text-blue-600 dark:text-blue-400"></i> Email
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md bg-white/90 dark:bg-navy-900/90 border border-slate-200 dark:border-navy-800 hover:border-blue-400 dark:hover:border-blue-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-brands fa-github text-blue-600 dark:text-blue-400"></i> GitHub
+          </a>
+          <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md bg-white/90 dark:bg-navy-900/90 border border-slate-200 dark:border-navy-800 hover:border-blue-400 dark:hover:border-blue-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-graduation-cap text-blue-600 dark:text-blue-400"></i> Google Scholar
+          </a>
+          <a href="#" onclick="copyCVLink(); return false;" class="px-3 py-1.5 rounded-md bg-white/90 dark:bg-navy-900/90 border border-slate-200 dark:border-navy-800 hover:border-blue-400 dark:hover:border-blue-500 text-slate-800 dark:text-slate-200 transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-regular fa-file-pdf text-blue-600 dark:text-blue-400"></i> Curriculum Vitae
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Research Interests -->
+    <section id="research" class="space-y-4">
+      <h2 class="text-xl font-bold text-navy-950 dark:text-slate-100 font-serif tracking-tight border-b border-slate-200 dark:border-navy-900/80 pb-2 flex items-center gap-2">
+        <i class="fa-solid fa-brain text-blue-600 dark:text-blue-400 text-sm"></i>
+        Research Interests
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+        <div class="p-4 rounded-xl border border-slate-200 dark:border-navy-900/70 bg-white/70 dark:bg-[#0b162c]/60 hover:border-blue-400 dark:hover:border-blue-500/50 transition-all space-y-1.5 shadow-xs">
+          <h3 class="font-semibold text-sm text-navy-950 dark:text-slate-100 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></span>
+            Biophysical Network Dynamics
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Investigating balanced states (E/I ratio), oscillatory rhythms, and low-dimensional manifolds in cortical microcircuits.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-slate-200 dark:border-navy-900/70 bg-white/70 dark:bg-[#0b162c]/60 hover:border-teal-400 dark:hover:border-teal-500/50 transition-all space-y-1.5 shadow-xs">
+          <h3 class="font-semibold text-sm text-navy-950 dark:text-slate-100 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-teal-500 shadow-sm shadow-teal-500/50"></span>
+            Local Synaptic Plasticity
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Formulating spike-timing-dependent plasticity (STDP) and three-factor learning rules that enable biological credit assignment.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-slate-200 dark:border-navy-900/70 bg-white/70 dark:bg-[#0b162c]/60 hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-all space-y-1.5 shadow-xs">
+          <h3 class="font-semibold text-sm text-navy-950 dark:text-slate-100 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500/50"></span>
+            Surrogate Gradient Learning
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Training recurrent spiking neural networks on temporal tasks using differentiable surrogate derivatives in PyTorch.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-slate-200 dark:border-navy-900/70 bg-white/70 dark:bg-[#0b162c]/60 hover:border-sky-400 dark:hover:border-sky-500/50 transition-all space-y-1.5 shadow-xs">
+          <h3 class="font-semibold text-sm text-navy-950 dark:text-slate-100 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sky-400 shadow-sm shadow-sky-400/50"></span>
+            Neural Data Analysis
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Working with high-density electrophysiology (Neuropixels) pipelines, spike sorting, and population dimensionality reduction.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications & Preprints -->
+    <section id="publications" class="space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 dark:border-navy-900/80 pb-2">
+        <h2 class="text-xl font-bold text-navy-950 dark:text-slate-100 font-serif tracking-tight">
+          Publications & Preprints
+        </h2>
+        <span class="text-xs font-mono text-slate-400">Chronological</span>
+      </div>
+
+      <div class="space-y-6 pt-1">
+        <!-- Paper 1 -->
+        <article class="space-y-1.5 text-sm">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+            <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-medium">NeurIPS 2025</span>
+            <span class="text-slate-400">doi: 10.48550/arXiv.2501.99999</span>
+          </div>
+          <h3 class="font-semibold text-navy-950 dark:text-slate-100 text-base leading-snug">
+            Temporal Credit Assignment in Recurrent Spiking Networks via Dendritic Gating
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs">
+            <span class="font-semibold text-navy-900 dark:text-slate-200 underline decoration-blue-400">Alex Rivera</span>, Elena Rostova, Marcus Thorne, David S. Campbell
+          </p>
+          <div class="flex items-center gap-3 pt-1 text-xs font-mono">
+            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">[PDF]</a>
+            <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-navy-900 dark:hover:text-slate-200">[Code]</a>
+            <button onclick="toggleBibtex('bib1')" class="text-slate-500 hover:text-navy-900 dark:hover:text-slate-200">[BibTeX]</button>
+          </div>
+          <!-- Inline BibTeX Box -->
+          <pre id="bib1" class="hidden mt-2 p-3 bg-slate-100 dark:bg-navy-950 rounded-lg border border-slate-200 dark:border-navy-900 text-[11px] font-mono text-slate-700 dark:text-slate-300 overflow-x-auto">
+@inproceedings{rivera2025dendritic,
+  title     = {Temporal Credit Assignment in Recurrent Spiking Networks via Dendritic Gating},
+  author    = {Rivera, Alex and Rostova, Elena and Thorne, Marcus and Campbell, David S.},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2025}
+}</pre>
+        </article>
+
+        <!-- Paper 2 -->
+        <article class="space-y-1.5 text-sm">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+            <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-navy-900 text-slate-700 dark:text-slate-300">Cosyne 2025</span>
+            <span class="text-slate-400">Abstract & Poster</span>
+          </div>
+          <h3 class="font-semibold text-navy-950 dark:text-slate-100 text-base leading-snug">
+            Emergence of Low-Dimensional Invariant Tori in Homeostatic Spiking Networks
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs">
+            <span class="font-semibold text-navy-900 dark:text-slate-200 underline decoration-blue-400">Alex Rivera</span>, Sarah Chen
+          </p>
+          <div class="flex items-center gap-3 pt-1 text-xs font-mono">
+            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">[Poster PDF]</a>
+            <button onclick="toggleBibtex('bib2')" class="text-slate-500 hover:text-navy-900 dark:hover:text-slate-200">[BibTeX]</button>
+          </div>
+          <!-- Inline BibTeX Box -->
+          <pre id="bib2" class="hidden mt-2 p-3 bg-slate-100 dark:bg-navy-950 rounded-lg border border-slate-200 dark:border-navy-900 text-[11px] font-mono text-slate-700 dark:text-slate-300 overflow-x-auto">
+@inproceedings{rivera2025invariant,
+  title     = {Emergence of Low-Dimensional Invariant Tori in Homeostatic Spiking Networks},
+  author    = {Rivera, Alex and Chen, Sarah},
+  booktitle = {Computational and Systems Neuroscience (Cosyne)},
+  year      = {2025}
+}</pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- Open Source Projects -->
+    <section id="projects" class="space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 dark:border-navy-900/80 pb-2">
+        <h2 class="text-xl font-bold text-navy-950 dark:text-slate-100 font-serif tracking-tight">
+          Selected Software & Projects
+        </h2>
+        <a href="https://github.com" target="_blank" class="text-xs font-mono text-slate-500 hover:text-blue-600 dark:hover:text-blue-400">
+          github.com &rarr;
+        </a>
+      </div>
+
+      <div class="space-y-4 pt-1">
+        <div class="flex justify-between items-start">
+          <div class="space-y-1">
+            <a href="https://github.com" target="_blank" class="font-medium text-sm text-blue-700 dark:text-blue-400 hover:underline font-mono">
+              spikewave-torch
+            </a>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              PyTorch surrogate gradient library for training leaky integrate-and-fire (LIF) networks on event-based data.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 ml-4 flex-shrink-0">Python / PyTorch</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+          <div class="space-y-1">
+            <a href="https://github.com" target="_blank" class="font-medium text-sm text-blue-700 dark:text-blue-400 hover:underline font-mono">
+              ca1-ripple-sim
+            </a>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              Biophysical network simulation of hippocampal CA1 sharp-wave ripple propagation built with Brian2.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 ml-4 flex-shrink-0">Brian2 / SciPy</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+          <div class="space-y-1">
+            <a href="https://github.com" target="_blank" class="font-medium text-sm text-blue-700 dark:text-blue-400 hover:underline font-mono">
+              neuropixels-quick-inspect
+            </a>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              Lightweight Jupyter dashboard for rapid visualization of extracellular raster plots and spike sorting clusters.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 ml-4 flex-shrink-0">Jupyter</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Milestones -->
+    <section id="education" class="space-y-4">
+      <h2 class="text-xl font-bold text-navy-950 dark:text-slate-100 font-serif tracking-tight border-b border-slate-200 dark:border-navy-900/80 pb-2">
+        Education & Training
+      </h2>
+
+      <div class="space-y-4 pt-1 text-sm">
+        <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-slate-500">
+          <span class="font-semibold text-navy-950 dark:text-slate-200">Ph.D. in Computational Neuroscience</span>
+          <span>2026 — Present</span>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 -mt-2">
+          Department of Brain and Cognitive Sciences &bull; Advisor: Dr. Sarah Chen
+        </p>
+
+        <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-slate-500 pt-2">
+          <span class="font-semibold text-navy-950 dark:text-slate-200">Neuromatch Academy</span>
+          <span>Summer 2025</span>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 -mt-2">
+          Computational Neuroscience Fellow &bull; Dynamical Systems Track
+        </p>
+
+        <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-slate-500 pt-2">
+          <span class="font-semibold text-navy-950 dark:text-slate-200">B.S. in Applied Mathematics & Biophysics</span>
+          <span>2021 — 2025</span>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 -mt-2">
+          Magna Cum Laude &bull; Thesis on bifurcations in conductance-based neural models
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="border-t border-slate-200 dark:border-navy-900/80 mt-20 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-mono">
+    <p>&copy; 2026 Alex Rivera &bull; Hosted on GitHub Pages</p>
+  </footer>
+
+  <!-- Subtle Toast Notification for copied items -->
+  <div id="toast" class="fixed bottom-5 right-5 px-3 py-2 bg-navy-900 dark:bg-slate-100 text-slate-100 dark:text-navy-950 text-xs font-mono rounded-md shadow-md transition-opacity duration-200 opacity-0 pointer-events-none z-50">
+    Copied to clipboard
+  </div>
+
+  <script>
+    // Theme toggle (light/dark)
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Load stored theme or check system preference
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Toggle BibTeX citation visibility
+    function toggleBibtex(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('hidden');
+      }
+    }
+
+    // Simple toast notification helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2200);
+    }
+
+    function copyCVLink() {
+      showToast('CV PDF link copied!');
+    }
+
+    // Generative Neural Canvas for Header
+    (function initNeuralCanvas() {
+      const canvas = document.getElementById('neuralCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width, height;
+      const nodes = [];
+      const pulses = [];
+      const nodeCount = 38;
+      const maxDistance = 110;
+
+      // Mouse tracking for subtle interactive pull
+      const mouse = { x: -1000, y: -1000, active: false };
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        width = canvas.width = rect.width;
+        height = canvas.height = rect.height;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Create neurons (nodes)
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push({
+          x: Math.random() * (width || 600),
+          y: Math.random() * (height || 260),
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: Math.random() * 1.8 + 1.2,
+          spiking: 0,
+        });
+      }
+
+      // Track mouse position over canvas
+      canvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active = true;
+      });
+
+      canvas.parentElement.addEventListener('mouseleave', () => {
+        mouse.active = false;
+      });
+
+      // Spawn periodic action-potential pulses along connected edges
+      setInterval(() => {
+        if (nodes.length < 2) return;
+        const i1 = Math.floor(Math.random() * nodes.length);
+        const n1 = nodes[i1];
+        
+        // Find a nearby node
+        for (let j = 0; j < nodes.length; j++) {
+          if (i1 === j) continue;
+          const n2 = nodes[j];
+          const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+          if (dist < maxDistance) {
+            pulses.push({
+              from: n1,
+              to: n2,
+              progress: 0,
+              speed: 0.025 + Math.random() * 0.02
+            });
+            n1.spiking = 1.0;
+            break;
+          }
+        }
+      }, 500);
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        const isDark = document.documentElement.classList.contains('dark');
+        const nodeColor = isDark ? 'rgba(96, 165, 250, ' : 'rgba(37, 99, 235, ';
+        const edgeColor = isDark ? 'rgba(56, 189, 248, ' : 'rgba(30, 64, 175, ';
+        const pulseColor = isDark ? '#38bdf8' : '#2563eb';
+
+        // Update & draw edges
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < maxDistance) {
+              const alpha = (1 - dist / maxDistance) * (isDark ? 0.25 : 0.16);
+              ctx.beginPath();
+              ctx.strokeStyle = edgeColor + alpha + ')';
+              ctx.lineWidth = 1;
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw and update action potential pulses
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const p = pulses[i];
+          p.progress += p.speed;
+          if (p.progress >= 1) {
+            p.to.spiking = 1.0;
+            pulses.splice(i, 1);
+            continue;
+          }
+          const px = p.from.x + (p.to.x - p.from.x) * p.progress;
+          const py = p.from.y + (p.to.y - p.from.y) * p.progress;
+
+          ctx.beginPath();
+          ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = pulseColor;
+          ctx.shadowColor = pulseColor;
+          ctx.shadowBlur = 6;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+
+        // Update & draw nodes (neurons)
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+
+          // Gentle movement
+          n.x += n.vx;
+          n.y += n.vy;
+
+          // Bounce off boundaries
+          if (n.x < 0 || n.x > width) n.vx *= -1;
+          if (n.y < 0 || n.y > height) n.vy *= -1;
+
+          // Mouse attraction
+          if (mouse.active) {
+            const mdx = mouse.x - n.x;
+            const mdy = mouse.y - n.y;
+            const mdist = Math.hypot(mdx, mdy);
+            if (mdist < 120 && mdist > 5) {
+              n.x += (mdx / mdist) * 0.35;
+              n.y += (mdy / mdist) * 0.35;
+            }
+          }
+
+          // Spiking decay
+          if (n.spiking > 0) {
+            n.spiking -= 0.03;
+            if (n.spiking < 0) n.spiking = 0;
+          }
+
+          // Node drawing
+          ctx.beginPath();
+          const r = n.radius + (n.spiking * 2.2);
+          ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+          const alpha = 0.5 + (n.spiking * 0.5);
+          ctx.fillStyle = nodeColor + alpha + ')';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('load', animate);
+      animate();
+    })();
+  </script>
+</body>
+</html>
